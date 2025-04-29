@@ -10,7 +10,7 @@ async function run() {
     const octokit = getOctokit(token);
     let t = await octokit.rest.packages.listPackagesForOrganization({
       package_type: 'container',
-      org,
+      org: owner,
     });
 
 
