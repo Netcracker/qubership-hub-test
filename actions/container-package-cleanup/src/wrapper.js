@@ -8,6 +8,7 @@ class OctokitWrapper {
    */
   constructor(authToken) {
     this.octokit = github.getOctokit(authToken);
+      const octokit = getOctokit(token);
   }
 
   /**
@@ -56,7 +57,7 @@ class OctokitWrapper {
    */
   async listPackagesForOrganization(org, package_type) {
     try {
-      return await this.octokit.paginate(octokit.rest.packages.listPackagesForOrganization,
+      return await this.octokit.paginate(this.octokit.rest.packages.listPackagesForOrganization,
         {
           org: owner,
           package_type: 'container',
