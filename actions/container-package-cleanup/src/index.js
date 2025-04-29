@@ -47,7 +47,7 @@ async function run() {
 
   let packages = await wrapper.listPackages(owner, 'container', isOrganization);
 
-  core.info(`🔹Packages ${JSON.stringify(packages, null, 2)}`);
+  // core.info(`🔹Packages ${JSON.stringify(packages, null, 2)}`);
 
   let filteredPackages = packages.filter((pkg) => pkg.repository?.name === 'qubership-jaeger');
 
