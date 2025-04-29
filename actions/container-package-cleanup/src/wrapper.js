@@ -115,12 +115,15 @@ class OctokitWrapper {
    */
   async getPackageVersionsForOrganization(org, package_type, package_name) {
     try {
-      const response = await this.octokit.rest.packages.getAllPackageVersionsForPackageOwnedByOrg({
-        package_type,
-        package_name,
-        org,
-      });
-      return response.data;
+      return await this.octokit.paginate(this.octokit.rest.packages.getAllPackageVersionsForPackageOwnedByOrg,
+        {
+          package_type,
+          package_name,
+          org,
+          per_page: 100,
+        });
+
+
     } catch (error) {
       console.error(`Error fetching package versions for ${org}/${package_name}:`, error);
       throw error;
