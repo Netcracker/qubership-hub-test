@@ -13,9 +13,15 @@ async function run() {
       org: owner,
     });
 
-
-
     core.info(`${JSON.stringify(t.data, null, 2)}`);
+
+
+    const r = t.data.filter((pkg) => pkg.repository?.name === 'qubership-jaeger');
+
+
+    core.info(`${JSON.stringify(r, null, 2)}`);
+
+
 }
 
 run();
