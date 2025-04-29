@@ -1,0 +1,11 @@
+name: Get containers
+
+on:
+  workflow_dispatch:
+
+jobs:
+    get-containers:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Get containers
+          uses: Netcracker/qubership-hub-test/actions/container-get@main

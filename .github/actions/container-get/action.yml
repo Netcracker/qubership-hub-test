@@ -1,0 +1,9 @@
+name: "Container Package Cleanup Action"
+description: "Cleans up old Docker images based on specified criteria."
+runs:
+  using: "node20"
+  main: "index.js"
+
+branding:
+  icon: "edit"
+  color: "yellow"
