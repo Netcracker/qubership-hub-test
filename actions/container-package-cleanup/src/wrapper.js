@@ -8,7 +8,6 @@ class OctokitWrapper {
    */
   constructor(authToken) {
     this.octokit = github.getOctokit(authToken);
-      const octokit = getOctokit(token);
   }
 
   /**
