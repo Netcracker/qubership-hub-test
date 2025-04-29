@@ -3,6 +3,10 @@ name: Get containers
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
     get-containers:
         runs-on: ubuntu-latest
