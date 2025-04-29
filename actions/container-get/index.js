@@ -8,20 +8,18 @@ async function run() {
     const token = process.env.PACKAGE_TOKEN;
 
     const octokit = getOctokit(token);
-    let t = await octokit.rest.packages.listPackagesForOrganization({
-      package_type: 'container',
-      org: owner,
-    });
 
-    core.info(`${JSON.stringify(t.data, null, 2)}`);
+    const allPackages = await octokit.paginate(
+        octokit.rest.packages.listPackagesForOrganization,
+        {
+          org: owner,
+          package_type: 'container',
+          per_page: 100,      // максимум 100 пакетов за запрос
+        }
+      );
 
-
-    const r = t.data.filter((pkg) => pkg.repository?.name === 'qubership-jaeger');
-
-
-    core.info(`${JSON.stringify(r, null, 2)}`);
-
-
+      const r = allPackages.filter(pkg => pkg.repository?.name === 'qubership-jaeger');
+      core.info(JSON.stringify(r, null, 2));
 }
 
 run();
