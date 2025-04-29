@@ -67,6 +67,7 @@ class OctokitWrapper {
       console.error(`Error fetching packages for organization ${org}:`, error);
       throw error;
     }
+  }
 
   /**
    * Lists packages for a user.
