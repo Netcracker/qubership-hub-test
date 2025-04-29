@@ -8,14 +8,14 @@ async function run() {
     const token = process.env.PACKAGE_TOKEN;
 
     const octokit = getOctokit(token);
-    const { data: { container } } = await octokit.rest.packages.getContainerRegistryPackage({
-        package_type: 'container',
-        package_name: process.env.IMAGE_NAME,
-        owner,
-        repo
+    let t = await octokit.rest.packages.listPackagesForOrganization({
+      package_type: 'container',
+      org,
     });
 
-    core.info(`Container ID: ${container.id}`);
+
+
+    core.info(`${JSON.stringify(t.data, null, 2)}`);
 }
 
 run();
