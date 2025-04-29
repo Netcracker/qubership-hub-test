@@ -9,7 +9,10 @@ permissions:
 
 jobs:
     get-containers:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Get containers
-          uses: Netcracker/qubership-hub-test/actions/container-get@main
+      runs-on: ubuntu-latest
+      steps:
+
+      - name: Get containers
+        uses: Netcracker/qubership-hub-test/actions/container-get@main
+        env:
+          PACKAGE_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
