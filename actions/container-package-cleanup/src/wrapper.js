@@ -77,8 +77,14 @@ class OctokitWrapper {
    */
   async listPackagesForUser(username, package_type) {
     try {
-      const response = await this.octokit.rest.packages.listPackagesForUser({ username, package_type });
-      return response.data;
+      return await this.octokit.paginate(this.octokit.rest.packages.listPackagesForUser,
+        {
+          username,
+          package_type,
+          per_page: 100,      // максимум 100 пакетов за запрос
+        }
+      );
+
     } catch (error) {
       console.error(`Error fetching packages for user ${username}:`, error);
       throw error;
@@ -94,12 +100,13 @@ class OctokitWrapper {
    */
   async getPackageVersionsForUser(owner, package_type, package_name) {
     try {
-      const response = await this.octokit.rest.packages.getAllPackageVersionsForPackageOwnedByUser({
-        package_type,
-        package_name,
-        username: owner,
-      });
-      return response.data;
+      return await this.octokit.paginate(this.octokit.rest.packages.getAllPackageVersionsForPackageOwnedByUser,
+        {
+          package_type,
+          package_name,
+          username: owner,
+          per_page: 100,
+        });
     } catch (error) {
       console.error(`Error fetching package versions for ${owner}/${package_name}:`, error);
       throw error;
@@ -122,7 +129,6 @@ class OctokitWrapper {
           org,
           per_page: 100,
         });
-
 
     } catch (error) {
       console.error(`Error fetching package versions for ${org}/${package_name}:`, error);
