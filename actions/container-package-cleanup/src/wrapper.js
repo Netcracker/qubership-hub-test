@@ -56,7 +56,7 @@ class OctokitWrapper {
    */
   async listPackagesForOrganization(org, package_type) {
     try {
-      return await octokit.paginate(octokit.rest.packages.listPackagesForOrganization,
+      return await this.octokit.paginate(octokit.rest.packages.listPackagesForOrganization,
         {
           org: owner,
           package_type: 'container',
