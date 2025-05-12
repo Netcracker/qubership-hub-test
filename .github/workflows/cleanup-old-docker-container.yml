@@ -23,6 +23,11 @@
               required: false
               default: false
               type: boolean
+            debug:
+              description: "Enable debug mode"
+              required: false
+              default: false
+              type: boolean              
     jobs:
         cleanup:
           runs-on: ubuntu-latest
@@ -37,11 +42,12 @@
                 echo "**Excluded tags**: ${{ github.event.inputs.excluded-tags || 'release*' }}"
                 echo "**Dry-run**: ${{ github.event.inputs.dry-run || 'false' }}"
             - name: Run Container Package Cleanup Action
-              uses: Netcracker/qubership-hub-test/actions/container-package-cleanup@main
+              uses: nookyo/qubership-hub-test/actions/container-package-cleanup@main
               with:
                 threshold-days: ${{ github.event.inputs.threshold-days || 8 }}
                 included-tags: ${{ github.event.inputs.included-tags || 'dev*' }}
                 excluded-tags: ${{ github.event.inputs.excluded-tags || 'release*' }}
                 dry-run: ${{ github.event.inputs.dry-run || 'false' }}
+                debug: ${{ github.event.inputs.debug || 'false' }}
               env:
                 PACKAGE_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
