@@ -14,7 +14,7 @@ async function run() {
         {
           org: owner,
           package_type: 'container',
-          per_page: 100,      // максимум 100 пакетов за запрос
+          per_page: 100,
         }
       );
 

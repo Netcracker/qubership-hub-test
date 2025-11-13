@@ -60,7 +60,7 @@ class OctokitWrapper {
         {
           org: org,
           package_type: 'container',
-          per_page: 200,      // максимум 100 пакетов за запрос
+          per_page: 100, // maximum allowed per page 100 packages
         }
       );
     } catch (error) {
@@ -81,7 +81,7 @@ class OctokitWrapper {
         {
           username,
           package_type,
-          per_page: 100,      // максимум 100 пакетов за запрос
+          per_page: 100,  // maximum allowed per page 100 packages
         }
       );
 
